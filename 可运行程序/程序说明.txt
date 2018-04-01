@@ -65,3 +65,5 @@ The address of the machine [ 地址 ]
 3、将第一个串口作为模拟屏串口，其余的串口做远传
 
 根据IP:端口和MODBUS地址取值
+2018/2/28
+float写成double

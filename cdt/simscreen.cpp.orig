@@ -110,8 +110,7 @@ void loadCfg(char* cfgfile)
     ycFlag_Remote = ycFlag; 
 }
 
-char* getRegBlock(char*p, uchar* pFunc, ushort* regaddr, uchar* num)
-{
+char* getRegBlock(char*p, uchar* pFunc, ushort* regaddr, uchar* num){
     char temp[20];
     char *ptemp;
     int i = 0;
@@ -134,9 +133,9 @@ char* getRegBlock(char*p, uchar* pFunc, ushort* regaddr, uchar* num)
         if (i == 0) {
             *pFunc = atoi(temp);
         } else if (i == 1) {
-            *regaddr = atoi(temp);
+              *regaddr = atoi(temp);
         } else if (i == 2) {
-            *num = atoi(temp);
+              *num = atoi(temp);
         }
     } 
     return p;	
@@ -260,11 +259,11 @@ void loadDevice(FILE* fp)
         ushort saddr;
         do {
             p = getRegBlock(p, &func, &saddr, &num);	
-            if (p == NULL || p == '\0') {
+            if (p==NULL || p=='\0') {
                 break;
             }
             pRegBlock = new TY_REG_BLOCK();
-            pRegBlock->func  = func;
+            pRegBlock->func  =func;
             pRegBlock->s_add = saddr;
             pRegBlock->size  = num;	           
             if(dev->pRegBlock == NULL){
@@ -477,9 +476,9 @@ void addYxMap(TY_YX_MB_MAP_LINK* plink, TY_YX_MB_MAP* pYxMap)
         while (plink->next != NULL) {
             plink = plink->next;
         }
-        pnext = new TY_YX_MB_MAP_LINK();
-        pnext->pYxMbMap = pYxMap;
-        plink->next = pnext;	
+    pnext = new TY_YX_MB_MAP_LINK();
+            pnext->pYxMbMap = pYxMap;
+            plink->next = pnext;	
     }
 }
 void addYcMap(TY_YC_MB_MAP_LINK* plink, TY_YC_MB_MAP* pYcMap)
@@ -761,7 +760,7 @@ void startModbusSerail(void)
             memset(sbuf, 0, sizeof(sbuf));
             serail.read((char*)sbuf, 8, Serail_NUM[i]);
             if (CheckSerailMsg(sbuf) == 1) {
-                convertMbReg(sbuf, Serail_NUM[i]);
+                convertMbReg(sbuf,Serail_NUM[i]);
             }
             Sleep(serailParam.simFlushT);
         } 		
